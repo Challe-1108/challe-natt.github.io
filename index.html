@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style/principal.css">
+  <title>Feliz Cumple Natt</title>
+  <style>
+  </style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <div class="birthday-cake">
+  <div class="cake">
+    <div class="candles">
+      <span class="candle"><i></i></span>
+      <span class="candle"><i></i></span>
+      <span class="candle"><i></i></span>
+    </div>
+
+    <div class="cake-top"></div>
+    <div class="cake-middle"></div>
+    <div class="cake-bottom"></div>
+  </div>
+</div>
+      <div>
+        <h1>¡Feliz cumpleaños!</h1>
+        <p class="lead">De parte de <strong>Mr. PC</strong> —  que lo pases feli feliiii</p>
+      </div>
+    </header>
+
+    <div class="center-wrap">
+      <button id="openGift" class="gift-btn">Abre tu regalo 🌻</button>
+      <img id="giftImage" class="floating-image" src="img/ramogirasol.webp" alt="Regalo">
+    </div>
+    <div id="giftText" class="gift-desc">Para tú :D</div>
+
+    <div class="grid">
+      <div class="item">
+        <img src="img/f02.jpeg" alt="item1">
+        <div class="desc"><strong>Awaos</strong><br>Mirenla nada más, toda ella</div>
+      </div>
+      <div class="item">
+        <img src="img/hldr.jpeg" alt="item2">
+        <div class="desc"><strong>Rawaos</strong><br>El heladito ñami ñami ^^</div>
+      </div>
+    </div>
+
+    <div class="links">
+      <a href="pag1.html">(Presiona) Lo que te debo :3</a>
+      <a href="pag2.html">(Presiona) Eeehhh solo abrelo xd</a>
+    </div>
+
+    <footer>Con cariño, Mr. PC</footer>
+  </div>
+
+  <script>
+    const btn = document.getElementById('openGift');
+    const img = document.getElementById('giftImage');
+    const txt = document.getElementById('giftText');
+    let opened = false;
+    btn.addEventListener('click', ()=>{
+      opened = !opened;
+      if(opened){
+        img.classList.add('show');
+        txt.textContent = 'I love you so much <3';
+        btn.textContent = 'Cerrar regalo';
+      }else{
+        img.classList.remove('show');
+        txt.textContent = 'Para tú :D';
+        btn.textContent = 'Abre tu regalo 🌻';
+      }
+    });
+  </script>
+</body>
+</html>

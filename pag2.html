@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letras ^^</title>
+    <style>
+      :root {
+        --bg: #111315;
+        --bg-alt: #1a1d20;
+        --panel: rgba(27, 31, 35, 0.9);
+        --panel-soft: rgba(41, 46, 50, 0.8);
+        --text: #f4efe8;
+        --muted: #d0c6b8;
+        --accent: #d5b584;
+        --accent-strong: #b88d52;
+        --line: rgba(255, 255, 255, 0.09);
+        --shadow: rgba(0, 0, 0, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background:
+          radial-gradient(circle at top, rgba(213, 181, 132, 0.12), transparent 30%),
+          linear-gradient(135deg, var(--bg) 0%, #171910 100%);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 72px 20px 80px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 24px;
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .back-link:hover {
+        opacity: 0.85;
+        transform: translateX(-2px);
+      }
+
+      .back-link .arrow {
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-size: 0.75rem;
+        margin-bottom: 16px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.2rem, 4vw, 4rem);
+        line-height: 1.1;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+      }
+
+      .subtitle {
+        max-width: 700px;
+        margin: 18px auto 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.7;
+      }
+
+      .accordion {
+        display: grid;
+        gap: 18px;
+      }
+
+      .accordion-item {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(17, 19, 21, 0.75);
+        box-shadow: 0 10px 30px var(--shadow);
+        overflow: hidden;
+      }
+
+      .accordion-btn {
+        width: 100%;
+        background: linear-gradient(180deg, rgba(32, 38, 42, 0.96), rgba(21, 25, 27, 0.96));
+        color: var(--text);
+        border: 0;
+        padding: 22px 26px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        cursor: pointer;
+        text-align: left;
+        font: inherit;
+        transition: background 0.2s ease, transform 0.2s ease;
+      }
+
+      .accordion-btn:hover {
+        background: linear-gradient(180deg, rgba(40, 46, 50, 0.96), rgba(24, 29, 32, 0.96));
+      }
+
+      .accordion-btn:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: -2px;
+      }
+
+      .trigger-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .trigger-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .trigger-desc {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .trigger-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid rgba(213, 181, 132, 0.45);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 1.4rem;
+        transition: transform 0.25s ease;
+        flex-shrink: 0;
+      }
+
+      .accordion-item.active .trigger-icon {
+        transform: rotate(45deg);
+      }
+
+      .panel {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.45s ease, padding 0.3s ease;
+        background: rgba(17, 20, 22, 0.85);
+      }
+
+      .accordion-item.active .panel {
+        max-height: 5000px;
+        padding: 24px 22px 26px;
+      }
+
+      .content-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .feature {
+        display: grid;
+        grid-template-columns: 1.15fr 1.85fr;
+        gap: 22px;
+        align-items: center;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--panel-soft);
+      }
+
+      .feature:nth-child(even) .feature-image {
+        order: 2;
+      }
+
+      .feature:nth-child(even) .feature-copy {
+        order: 1;
+      }
+
+      .feature-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: 14px;
+        min-height: 220px;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+      }
+
+      .feature-image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.35s ease;
+      }
+
+      .feature:hover .feature-image img {
+        transform: scale(1.03);
+      }
+
+      .feature-copy {
+        padding: 6px 4px;
+      }
+
+      .feature-tag {
+        display: inline-block;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 10px;
+      }
+
+      .feature-copy h3 {
+        margin: 0 0 12px;
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        line-height: 1.2;
+      }
+
+      .feature-copy p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.98rem;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 768px) {
+        .page {
+          padding-top: 52px;
+        }
+
+        .accordion-btn {
+          padding: 18px 18px;
+        }
+
+        .trigger-title {
+          font-size: 1.05rem;
+        }
+
+        .feature {
+          grid-template-columns: 1fr;
+        }
+
+        .feature-image,
+        .feature-copy {
+          order: initial;
+        }
+
+        .feature:nth-child(even) .feature-image,
+        .feature:nth-child(even) .feature-copy {
+          order: initial;
+        }
+
+        .feature-image {
+          min-height: 210px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .subtitle {
+          font-size: 0.96rem;
+        }
+
+        .panel {
+          padding: 0;
+        }
+
+        .accordion-item.active .panel {
+          padding: 18px 14px 20px;
+        }
+
+        .feature {
+          padding: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <a class="back-link" href="index.html" aria-label="Volver al inicio">
+        <span class="arrow" aria-hidden="true">←</span>
+        <span>Volver</span>
+      </a>
+
+      <header class="header">
+        <div class="eyebrow">Mr. PC</div>
+        <h1>Tu Top 5</h1>
+        <p class="subtitle">
+          Sorpresaaaa!
+        </p>
+      </header>
+
+      <section class="accordion" aria-label="Detalles de la celebración">
+
+        <div class="accordion-item">
+          <button class="accordion-btn" type="button" aria-expanded="true">
+            <span class="trigger-copy">
+              <span class="trigger-title">A Little Piece of Heaven</span>
+              <span class="trigger-desc">Avenged Sevenfold</span>
+            </span>
+            <span class="trigger-icon" aria-hidden="true">+</span>
+          </button>
+
+
+          <div class="panel">
+            <div class="content-grid">
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/A Little Piece of Heaven/img01.png" alt="Sala con luces cálidas y decoración elegante" />
+                </div>
+
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">Baby don't cry</h3>
+                </div>
+              </article>
+
+
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/A Little Piece of Heaven/img02.png" alt="Mesa decorada con flores y elementos de estilo elegante" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">You had my heart</h3>
+                </div>
+              </article>
+
+
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/A Little Piece of Heaven/img03.png" alt="Mesa decorada con flores y elementos de estilo elegante" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">at least for the most part</h3>
+                </div>
+              </article>
+
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/A Little Piece of Heaven/img04.png" alt="Mesa decorada con flores y elementos de estilo elegante" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">'Cause everybody's gotta die sometime</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/A Little Piece of Heaven/img05.png" alt="Mesa decorada con flores y elementos de estilo elegante" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">We fell apart</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/A Little Piece of Heaven/img06.png" alt="Mesa decorada con flores y elementos de estilo elegante" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">let's make a new start</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/A Little Piece of Heaven/img07.png" alt="Mesa decorada con flores y elementos de estilo elegante" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">'Cause everybody's gotta die sometime</h3>
+                  <h3 style="text-align: center;">yeah, yeah</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/A Little Piece of Heaven/img08.png" alt="Mesa decorada con flores y elementos de estilo elegante" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">But baby, don't cryyy</h3>
+                </div>
+              </article>
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="accordion-item">
+          <button class="accordion-btn" type="button" aria-expanded="false">
+            <span class="trigger-copy">
+              <span class="trigger-title">Gunslinger</span>
+              <span class="trigger-desc">Avenged Sevenfold</span>
+            </span>
+            <span class="trigger-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="panel">
+            <div class="content-grid">
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Gunslinger/img01.jpg" alt="Detalle de mesa con vajilla elegante" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">I've always been true</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Gunslinger/img02.jpg" alt="Flores y centro de mesa en tonos cálidos" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">I've waited so long just to come hold you</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Gunslinger/img03.jpg" alt="Flores y centro de mesa en tonos cálidos" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">I'm making it through</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Gunslinger/img04.jpg" alt="Flores y centro de mesa en tonos cálidos" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">It's been far too long</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Gunslinger/img05.png" alt="Flores y centro de mesa en tonos cálidos" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">We've proven our love over time's so strong</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Gunslinger/img06.png" alt="Flores y centro de mesa en tonos cálidos" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">In all that we do</h3>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+        <div class="accordion-item">
+          <button class="accordion-btn" type="button" aria-expanded="false">
+            <span class="trigger-copy">
+              <span class="trigger-title">The Light Behind your Eyes</span>
+              <span class="trigger-desc">My Chemical Romance</span>
+            </span>
+            <span class="trigger-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="panel">
+            <div class="content-grid">
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/The_Light_Behind_your_eyes/img01.jpg" alt="Detalles de celebración con diseño delicado" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">And If I could be with you tonight</h3>
+                  <h3 style="text-align: center;">I would sing you to sleep</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/The_Light_Behind_your_eyes/img02.avif" alt="Mesa con platos y servicio final" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">Never let them take the light behind your eyes</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/The_Light_Behind_your_eyes/img03.jpg" alt="Mesa con platos y servicio final" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">I'll fail and lose this fight</h3>
+                  <h3 style="text-align: center;">Never fade in the dark</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/The_Light_Behind_your_eyes/img04.jpg" alt="Mesa con platos y servicio final" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">Just remember you will always burn as bright</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/The_Light_Behind_your_eyes/img05.jpg" alt="Mesa con platos y servicio final" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">The light behind your eyes</h3>
+                </div>
+              </article>
+              
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="accordion-item">
+          <button class="accordion-btn" type="button" aria-expanded="false">
+            <span class="trigger-copy">
+              <span class="trigger-title">Lonely Day</span>
+              <span class="trigger-desc">System of a Down</span>
+            </span>
+            <span class="trigger-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="panel">
+            <div class="content-grid">
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Lonely_Day/img01.jpg" alt="Detalles de celebración con diseño delicado" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">And if you go...</h3>
+                  <h3 style="text-align: center;">I wanna go with you</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Lonely_Day/img02.jpg" alt="Mesa con platos y servicio final" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">And if you die...</h3>
+                  <h3 style="text-align: center;">I wanna go with you</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Lonely_Day/img03.avif" alt="Mesa con platos y servicio final" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">Take your hand</h3>
+                  <h3 style="text-align: center;">and walk awaaaay</h3>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        
+
+        <div class="accordion-item">
+          <button class="accordion-btn" type="button" aria-expanded="false">
+            <span class="trigger-copy">
+              <span class="trigger-title">Snuff</span>
+              <span class="trigger-desc">Slipknot</span>
+            </span>
+            <span class="trigger-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="panel">
+            <div class="content-grid">
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Snuff/img01.jpg" alt="Detalles de celebración con diseño delicado" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">So, break yourself against my stones</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Snuff/img02.jpg" alt="Mesa con platos y servicio final" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">And spit your pity in my soul</h3>
+                </div>
+              </article>
+
+
+
+                <article class="feature">
+                    <div class="feature-image">
+                    <img src="img/Snuff/img03.jpg" alt="Mesa con platos y servicio final" />
+                    </div>
+                    
+                    <div class="feature-copy">
+                    <h3 style="text-align: center;">You never needed any help</h3>
+                    </div>
+                </article>
+
+
+                <article class="feature">
+                    <div class="feature-image">
+                    <img src="img/Snuff/img04.jpg" alt="Mesa con platos y servicio final" />
+                    </div>
+                    
+                    <div class="feature-copy">
+                    <h3 style="text-align: center;">You sold me out to save yourself</h3>
+                    </div>
+                </article>
+
+                <article class="feature">
+                    <div class="feature-image">
+                    <img src="img/Snuff/img05.jpg" alt="Mesa con platos y servicio final" />
+                    </div>
+                    
+                    <div class="feature-copy">
+                    <h3 style="text-align: center;">And I won't listen to your shame</h3>
+                    </div>
+                </article>
+
+                
+                <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Snuff/img06.jpg" alt="Mesa con platos y servicio final" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">You ran away, you're all the same</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Snuff/img07.jpg" alt="Mesa con platos y servicio final" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">Angels lie to keep control</h3>
+                </div>
+              </article>
+
+
+
+
+
+
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Snuff/img08.jpg" alt="Mesa con platos y servicio final" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">Ooh, my love was punished long ago</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Snuff/img09.jpg" alt="Mesa con platos y servicio final" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">If you still care, don't ever let me know</h3>
+                </div>
+              </article>
+
+              <article class="feature">
+                <div class="feature-image">
+                  <img src="img/Snuff/img10.png" alt="Mesa con platos y servicio final" />
+                </div>
+                
+                <div class="feature-copy">
+                  <h3 style="text-align: center;">IF YOU STILL CARE, DON'T EVER LET ME KNOW</h3>
+                </div>
+              </article>
+
+
+            </div>
+          </div>
+        </div>
+
+
+      </section>
+    </main>
+
+    <script>
+      const buttons = document.querySelectorAll('.accordion-btn');
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const item = button.closest('.accordion-item');
+          const isOpen = item.classList.contains('active');
+
+          document.querySelectorAll('.accordion-item').forEach((accordionItem) => {
+            accordionItem.classList.remove('active');
+            accordionItem.querySelector('.accordion-btn').setAttribute('aria-expanded', 'false');
+          });
+
+          if (!isOpen) {
+            item.classList.add('active');
+            button.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

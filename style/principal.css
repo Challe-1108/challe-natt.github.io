@@ -1,0 +1,691 @@
+:root {
+    --bg: #0f1720;
+    --card: #0f2330;
+    --accent: #ffc857;
+    --soft: #cfe8d5;
+    --glass: rgba(255, 255, 255, 0.04);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            1200px 600px at 10% 10%,
+            rgba(255, 200, 87, 0.06),
+            transparent
+        ),
+        var(--bg);
+
+    color: var(--soft);
+
+    font-family:
+        system-ui,
+        -apple-system,
+        'Segoe UI',
+        Roboto,
+        'Helvetica Neue',
+        Arial;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 32px;
+}
+
+
+/* =========================================================
+   TARJETA PRINCIPAL
+   ========================================================= */
+
+.card {
+    width: 100%;
+    max-width: 980px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.02),
+            rgba(0, 0, 0, 0.12)
+        );
+
+    border-radius: 16px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.6);
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   CABECERA
+   ========================================================= */
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+p.lead {
+    margin: 6px 0 0;
+
+    color: #cfe8d5;
+
+    opacity: 0.95;
+}
+
+
+/* =========================================================
+   TORTA
+   ========================================================= */
+
+.birthday-cake {
+    width: 84px;
+    height: 84px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+
+/* -------------------------
+   Cuerpo de la torta
+   ------------------------- */
+
+.cake {
+    width: 70px;
+    height: 60px;
+
+    position: relative;
+
+    margin-top: 15px;
+}
+
+
+/* Piso inferior */
+
+.cake-bottom {
+    position: absolute;
+
+    bottom: 0;
+    left: 5px;
+
+    width: 60px;
+    height: 25px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #d98b9c,
+            #b85f76
+        );
+
+    border-radius:
+        5px 5px 10px 10px;
+
+    box-shadow:
+        inset 0 -5px rgba(0, 0, 0, 0.12),
+        0 5px 10px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Piso del medio */
+
+.cake-middle {
+    position: absolute;
+
+    bottom: 20px;
+    left: 10px;
+
+    width: 50px;
+    height: 22px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #f2b6bd,
+            #d98596
+        );
+
+    border-radius:
+        5px 5px 8px 8px;
+
+    box-shadow:
+        inset 0 -4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Parte superior */
+
+.cake-top {
+    position: absolute;
+
+    bottom: 38px;
+    left: 15px;
+
+    width: 40px;
+    height: 18px;
+
+    background: #ffe1a8;
+
+    border-radius:
+        50% 50% 35% 35%;
+
+    box-shadow:
+        inset 0 -4px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   VELAS
+   ========================================================= */
+
+.candles {
+    position: absolute;
+
+    top: -12px;
+    left: 0;
+
+    width: 70px;
+    height: 35px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    z-index: 5;
+}
+
+
+/* Cuerpo de cada vela */
+
+.candle {
+    width: 6px;
+    height: 20px;
+
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            #fff,
+            #fff 3px,
+            #f29ab0 3px,
+            #f29ab0 6px
+        );
+
+    border-radius: 2px;
+
+    position: relative;
+
+    box-shadow:
+        0 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   LLAMAS
+   ========================================================= */
+
+.candle i {
+    position: absolute;
+
+    width: 9px;
+    height: 13px;
+
+    top: -12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #ffb300;
+
+    border-radius:
+        50% 50% 50% 50%;
+
+    box-shadow:
+        0 0 6px #ff9800,
+        0 0 10px rgba(255, 152, 0, 0.6);
+
+    animation:
+        flame 0.8s infinite alternate ease-in-out;
+}
+
+
+/* Parte interior de la llama */
+
+.candle i::after {
+    content: "";
+
+    position: absolute;
+
+    width: 4px;
+    height: 7px;
+
+    left: 50%;
+    bottom: 1px;
+
+    transform: translateX(-50%);
+
+    background: #fff3b0;
+
+    border-radius: 50%;
+}
+
+
+/* Animación de las llamas */
+
+@keyframes flame {
+
+    0% {
+        transform:
+            translateX(-50%)
+            scale(1)
+            rotate(-3deg);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            scale(1.15)
+            rotate(4deg);
+    }
+
+    100% {
+        transform:
+            translateX(-50%)
+            scale(0.9)
+            rotate(-4deg);
+    }
+}
+
+
+/* =========================================================
+   ÁREA CENTRAL DEL REGALO
+   ========================================================= */
+
+.center-wrap {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    height: 380px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    gap: 12px;
+}
+
+
+/* Botón */
+
+.gift-btn {
+    margin-bottom: 18px;
+
+    z-index: 2;
+
+    padding: 10px 18px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffd866,
+            #ffb95c
+        );
+
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.18);
+
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.2s ease;
+}
+
+.gift-btn:hover {
+    box-shadow:
+        0 8px 22px rgba(255, 200, 87, 0.25);
+}
+
+.gift-btn:active {
+    transform: translateY(2px);
+}
+
+
+/* =========================================================
+   IMAGEN DEL REGALO
+   ========================================================= */
+
+.floating-image {
+    position: absolute;
+
+    top: -13%;
+
+    transition:
+        transform 0.7s cubic-bezier(.22, .9, .28, 1),
+        opacity 0.7s;
+
+    transform: translateY(-8%);
+
+    opacity: 0;
+
+    max-width: 80%;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.floating-image.show {
+    transform: translateY(8%);
+
+    opacity: 1;
+}
+
+
+/* Texto del regalo */
+
+.gift-desc {
+    text-align: center;
+
+    margin-top: 8px;
+
+    color: #f6f3e9;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   LISTA DE IMÁGENES
+   ========================================================= */
+
+.grid {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 22px;
+}
+
+.item {
+    background: var(--glass);
+
+    border-radius: 12px;
+
+    padding: 12px;
+
+    display: flex;
+
+    gap: 12px;
+
+    align-items: center;
+}
+
+.item img {
+    width: 84px;
+    height: 84px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    flex-shrink: 0;
+}
+
+.item .desc {
+    color: #f7f9f8;
+}
+
+
+/* =========================================================
+   ENLACES
+   ========================================================= */
+
+.links {
+    margin-top: 10px;
+
+    display: flex;
+
+    gap: 8px;
+}
+
+.links a {
+    color: var(--accent);
+
+    text-decoration: none;
+
+    background:
+        rgba(255, 200, 87, 0.06);
+
+    padding: 8px 10px;
+
+    border-radius: 8px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+    margin-top: 18px;
+
+    color: #99b7a6;
+
+    font-size: 0.9rem;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   PANTALLAS GRANDES
+   ========================================================= */
+
+@media (min-width: 900px) {
+
+    .center-wrap {
+        height: 480px;
+    }
+
+    .floating-image {
+        max-width: 46%;
+    }
+}
+
+
+/* =========================================================
+   TABLET / CELULAR
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 20px 15px;
+    }
+
+    .card {
+        padding: 22px;
+        border-radius: 14px;
+    }
+
+    header {
+        gap: 12px;
+    }
+
+    .birthday-cake {
+        width: 70px;
+        height: 70px;
+    }
+
+    .cake {
+        transform: scale(0.9);
+    }
+
+    h1 {
+        font-size: 1.55rem;
+        line-height: 1.25;
+    }
+
+    p.lead {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .center-wrap {
+        height: 330px;
+    }
+
+    .floating-image {
+        max-width: 90%;
+    }
+
+    .grid {
+        margin-top: 20px;
+    }
+
+    .links {
+        flex-direction: column;
+    }
+
+    .links a {
+        text-align: center;
+    }
+
+    footer {
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+   SAMSUNG / CELULARES PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .card {
+        padding: 18px;
+
+        border-radius: 13px;
+    }
+
+    header {
+        align-items: center;
+        gap: 10px;
+    }
+
+    .birthday-cake {
+        width: 65px;
+        height: 65px;
+    }
+
+    .cake {
+        transform: scale(0.82);
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    p.lead {
+        font-size: 0.85rem;
+    }
+
+    .center-wrap {
+        height: 300px;
+    }
+
+    .gift-btn {
+        padding: 10px 16px;
+
+        font-size: 0.9rem;
+    }
+
+    .item {
+        padding: 10px;
+    }
+
+    .item img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .item .desc {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* =========================================================
+   CELULARES MUY PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .card {
+        padding: 15px;
+    }
+
+    .birthday-cake {
+        width: 58px;
+        height: 58px;
+    }
+
+    .cake {
+        transform: scale(0.72);
+    }
+
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    p.lead {
+        font-size: 0.8rem;
+    }
+
+    .center-wrap {
+        height: 280px;
+    }
+}
