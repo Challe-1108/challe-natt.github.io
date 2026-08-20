@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Adicional</title>
 
     <style>
@@ -14,48 +15,126 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-color: #1f2937; /* Fondo oscuro unificado */
-            color: white;
+            background-color: #f4f6f8;
+            color: #222;
         }
 
-        /* ENCABEZADO Y CONTENIDO */
+        /* ENCABEZADO */
         header {
             background-color: #1f2937;
+            color: white;
+            
             padding: 50px 20px;
-            text-align: center; /* Centra el título para mejor estética */
         }
 
         header h1 {
             font-size: 38px;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
 
         header p {
             font-size: 18px;
-            max-width: 650px;
-            margin: 0 auto;
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .introduccion {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .introduccion h2 {
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+
+        .introduccion p {
             line-height: 1.7;
-            text-align: left; /* Mantiene el texto de la carta alineado a la izquierda para leer bien */
+            color: #555;
+        }
+
+        /* GALERÍA */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .tarjeta {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+            transition: transform 0.2s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-5px);
+        }
+
+        .tarjeta img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .tarjeta .texto {
+            padding: 20px;
+        }
+
+        .tarjeta h3 {
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .tarjeta p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* PIE DE PÁGINA */
+        footer {
+            background-color: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
         }
 
         /* RESPONSIVE PARA CELULARES */
         @media (max-width: 800px) {
+            .galeria {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             header h1 {
                 font-size: 30px;
             }
         }
 
         @media (max-width: 550px) {
+            .galeria {
+                grid-template-columns: 1fr;
+            }
+
             header {
                 padding: 40px 15px;
             }
 
             header h1 {
                 font-size: 27px;
-            }
-
-            header p {
-                font-size: 16px; /* Texto ligeramente más pequeño en pantallas chicas */
             }
         }
     </style>
@@ -68,53 +147,57 @@
         <h1>Estimada Natt</h1>
 
         <p>
-            Holas, hoy 19 de agosto de 2026, 11:00 am.<br>
+            Holas, hoy 19 de agosto de 2026, 11am <br>
+
             <br>
             Quiero dirigirme a ti otra vez.<br>
             <br>
-            Decirte que agradezco cada momento que me permitiste tener a tu lado.<br>
-            Pido perdón por algunos momentos en que te incomodé.<br>
-            Gracias por los encuentros, encuentros 2.0 y encuentros 5.0 (la venganza de challe xd).<br>
-            Es curioso... escribo esto desde el celular mientras mis audífonos reproducen Snuff.<br>
+            Decirte que agradezco cada momento que me permitiste tener a tu lado<br>
+            Pido perdón por algunos momentos en que te incomodé<br>
+            Gracias por los encuentros, encuentros 2.0 y encuentros 5.0 (la venganzq de challe xd)<br>
+            es curioso... escribo esto desde celular mientras mis audifonos reproducen Snuff<br>
             <br>
-            Bueno, ambos sabemos que esto es lo mejor, de lo contrario sería incómodo para ti...<br>
+            Bueno ambos sabemos que esto es lo mejor, de lo contrario sería incomodo para ti...<br>
             doloroso para mí...<br>
             <br>
-            La próxima vez que quieras una salida o algo así, solo quiero algo:<br>
-            Que sea en Huanchaco, en esa roca con espaldar, con el mismo vino y a la misma hora.<br>
+            La próxima vez que quieras una salida o algo así, solo quiero algo:
+            Que sea en Huanchaco, en esa roca con espaldar, con el mismo vino y a la misma hora<br>
             <br>
-            Para ello falta mucho, o quizá no se dé la oportunidad, mas no pierdo la esperanza de volver a abrazarte a futuro.<br>
-            No este mes, ni el otro... quizá en 2027 o más.<br>
             <br>
+
+            Para ello falta mucho, o quizá no se dé la oportunidad, mas no pierdo la
+            esperanza de volver a abrazarte a futuro.<br>
+            No este mes, ni el otro... quizá en 2027 o más <br>
+<br>
             Gracias por acompañarme en este año, lo hiciste muy especial.<br>
             Sobre mi polo de carrera... no coloqué el número 17 por ser mi edad, lo puse ahí porque...<br>
-            Te consideré tanto que impregné tu día de cumpleaños en mi espalda, no imaginé el spoiler xd.<br>
-            <br>
-            Espero no olvides ese día que fui corriendo hacia ti solo para poder abrazarte antes que vayas a tus prácticas.<br>
-            <br>
-            Estoy soldando ideas al azar, no sé con qué más completar esto jeje.<br>
-            <br>
-            Me encanta tu mirada, tu sonrisa, tus mejillas. Cada abrazo podía adorar la cercanía momentánea que generaba cierta taquicardia.<br>
-            Cada invitación a comer era felicidad pura en mí.<br>
-            Me reconfortaba el poder consolarte en momentos de estrés o ansiedad que tenías.<br>
-            <br>
-            Bueno, espero de corazón que logremos superar esto.<br>
-            <br>
-            Si volvemos a hablar, por favor, que no quede como amigos, no quiero eso.<br>
-            Si volvemos a hablar, que sea con intenciones de hacer realidad lo que quedó como confesión.<br>
-            Ya sabes cómo soy: o todo... o nada.<br>
-            <br>
-            Si vuelves, prometo dar todo;<br>
-            mientras, será un "nada".<br>
-            <br>
-            Eso es todo.<br>
-            Te amo mucho, Natt.<br>
-            Perdón por no confesarlo antes.<br>
-            Cuídate.<br>
-            <br>
-            Psdt: Espero me dejes de odiar...<br>
-            <br>
-            — Mr. PC
+            Te consideré tanto que impregné tu día de cumpleaños en mi espalda, no imaginé el spoiler xd<br>
+<br>
+            Espero no olvides ese día que fui corriendo hacia tí solo para poder abrazarte antes que vayas a tus prácticas.<br>
+<br>
+            Estoy soldando ideas al azar, no sé con qué más completar esto jeje<br>
+<br>
+            Me encanta tu mirada, tu sonrisa, tus mejillas. Cada abrazo podia adorar la cercanía momentánea que generaba cierta taquicardia<br>
+            Cada invitación a comer era felicidad pura en mi<br>
+            Me reconfortaba el poder consolarte en momentos de estrés o ansiedad que tenias<br>
+<br>
+            bueno, espero de corazón que logremos superar esto<br>
+<br>
+            Si volvemos a hablar, porfavor, que no quede como amigos, no quiero eso<br>
+            Si volvemos a hablar, que sea con intenciones de hacer realidad lo que quedó como confesión<br>
+            Ya sabes como soy: o todo...o nada.<br>
+<br>
+            si vuelves prometo dar todo<br>
+            mientras, será un "nada"<br>
+
+          <br>
+
+          Eso es todo<br>
+          Te amo mucho Natt<br>
+          Perdón por no confesarlo antes <br>
+          Cuidate<br>
+          <br>
+          — Mr. PC
         </p>
     </header>
 
